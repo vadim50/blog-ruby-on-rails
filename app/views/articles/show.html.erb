@@ -1,0 +1,30 @@
+<h1><%= @article.title %></h1>
+
+<p><%= @article.text %></p>
+
+<%= link_to 'Back to List of articles', articles_path %>
+<h2>Comments:</h2>
+
+<% @article.comments.each do |c|%>
+	<b><%= c.author %></b>
+	<i><%= c.body %></i>
+	<hr>
+	<% end %>
+<h2>Add Comment:</h2>
+<p>
+	<%= form_for([@article, @article.comments.build]) do |f|%>
+	<p>
+		<%= current_user.username %>
+		
+		<%= f.hidden_field :author , :value => current_user.username %>
+	</p>
+	<p>
+		<%= f.label :body %>
+		<%= f.text_area :body %>
+	</p>
+	<p>
+		<%= f.submit 'Add comment'%>
+	</p>
+	
+	<% end %>
+</p>

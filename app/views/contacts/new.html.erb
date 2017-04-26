@@ -1,0 +1,21 @@
+<h1>Create Message:</h1>
+
+
+<%= form_for :contact, url: contacts_path do |f|%>
+	<p>
+		<% if @contact && @contact.errors.any? %>
+			
+  				<% @contact.errors.full_messages.each do |msg| %>
+  				<ul>
+  					<li><%= msg %></li>
+  				</ul>
+  				<% end %>
+    			
+  		<% end %>
+	</p>
+	<p><%= f.label :email %></p>
+	<p><%= f.text_field :email %></p>
+	<p><%= f.label :message %></p>
+	<p><%= f.text_area :message %></p>
+	<p><%= f.submit 'Send message' %></p>
+	<% end %>
